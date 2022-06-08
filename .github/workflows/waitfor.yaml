@@ -33,7 +33,7 @@ jobs:
           wait_for: high
           code_scanning_alerts: false
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          timeout: 20
+          timeout: 600
       - name: Nexploit Stop Scan
         uses: NeuraLegion/stop-scan@release
         with:
