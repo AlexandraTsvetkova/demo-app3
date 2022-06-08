@@ -21,8 +21,8 @@ jobs:
           crawler_urls: |
             [ "http://qa.brokencrystals.com/api/testimonials" ]
           module: 'dast'
-          exclude_params: |
-            ["query"]
+          exclude_entry_points: |
+            []
       - name: Wait for breakpoint
         id: wait
         uses: NeuraLegion/wait-for@release
@@ -33,7 +33,7 @@ jobs:
           wait_for: high
           code_scanning_alerts: false
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          timeout: 2000
+          timeout: 20
       - name: Nexploit Stop Scan
         uses: NeuraLegion/stop-scan@release
         with:
