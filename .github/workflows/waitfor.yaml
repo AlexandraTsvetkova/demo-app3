@@ -15,14 +15,14 @@ jobs:
         with:
           api_token: ${{ secrets.NEXPLOIT_TOKEN}}
           hostname: hotel.playground.nexploit.app
-          name: exclusions test 1
+          name: exclusions test 5
           discovery_types: |
             [ "crawler" ]
           crawler_urls: |
-            [ "http://qa.brokencrystals.com/api/testimonials" ]
+            [ "http://qa.brokencrystals.com/api/testimonials/count" ]
           module: 'dast'
           exclude_entry_points: |
-            []
+            [query]
       - name: Wait for breakpoint
         id: wait
         uses: NeuraLegion/wait-for@release
@@ -33,7 +33,7 @@ jobs:
           wait_for: high
           code_scanning_alerts: false
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          timeout: 600
+          timeout: 1200
       - name: Nexploit Stop Scan
         uses: NeuraLegion/stop-scan@release
         with:
