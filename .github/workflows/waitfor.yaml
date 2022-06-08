@@ -19,8 +19,10 @@ jobs:
           discovery_types: |
             [ "crawler" ]
           crawler_urls: |
-            [ "http://qa.brokencrystals.com" ]
+            [ "http://qa.brokencrystals.com/api/testimonials" ]
           module: 'dast'
+          exclude_params: |
+            ["query"]
       - name: Wait for breakpoint
         id: wait
         uses: NeuraLegion/wait-for@release
@@ -28,16 +30,16 @@ jobs:
           api_token:  ${{ secrets.NEXPLOIT_TOKEN }}
           hostname: hotel.playground.nexploit.app
           scan: ${{ steps.start.outputs.id }}
-          wait_for: any
+          wait_for: high
           code_scanning_alerts: false
           github_token: ${{ secrets.GITHUB_TOKEN }}
           timeout: 2000
-#       - name: Nexploit Stop Scan
-#         uses: NeuraLegion/stop-scan@release
-#         with:
-#           api_token: ${{ secrets.NEXPLOIT_TOKEN }}
-#           hostname: development.playground.nexploit.app
-#           scan: ${{ steps.start.outputs.id }}
+      - name: Nexploit Stop Scan
+        uses: NeuraLegion/stop-scan@release
+        with:
+          api_token: ${{ secrets.NEXPLOIT_TOKEN }}
+          hostname: hotel.playground.nexploit.app
+          scan: ${{ steps.start.outputs.id }}
   
 #   wait_for_any_with_code_scanning_enabled:
 #     name: Wait for any issues when code scanning is enabled
