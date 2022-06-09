@@ -15,14 +15,14 @@ jobs:
         with:
           api_token: ${{ secrets.NEXPLOIT_TOKEN}}
           hostname: hotel.playground.nexploit.app
-          name: exclusions test 23
+          name: exclusions test 24
           discovery_types: |
             [ "crawler" ]
           crawler_urls: |
             [ "http://1a54-87-116-164-158.ngrok.io" ]
           module: 'dast'
           exclude_entry_points: |
-            [ { "methods": [], "patterns": [ "second", "first" ] } ]
+            [ { "methods": [ "POST" ], "patterns": [ "users\/.+\/?$" ] } ]
       - name: Wait for breakpoint
         id: wait
         uses: NeuraLegion/wait-for@release
