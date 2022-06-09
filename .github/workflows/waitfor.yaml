@@ -19,10 +19,10 @@ jobs:
           discovery_types: |
             [ "crawler" ]
           crawler_urls: |
-            [ "http://qa.brokencrystals.com/api/testimonials/count" ]
+            [ "http://06e9-87-116-164-158.ngrok.io" ]
           module: 'dast'
           exclude_entry_points: |
-            [query]
+            ["econd$"]
       - name: Wait for breakpoint
         id: wait
         uses: NeuraLegion/wait-for@release
